@@ -12,14 +12,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapperDao userMapperDao;
 
-    public UserMapperDao getUserMapperDao() {
-        return userMapperDao;
-    }
-
-    public void setUserMapperDao(UserMapperDao userMapperDao) {
-        this.userMapperDao = userMapperDao;
-    }
-
     @Override
     public User findUserById(Integer id) {
         return userMapperDao.selectByPrimaryKey(id);
