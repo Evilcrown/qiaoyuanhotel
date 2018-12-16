@@ -1,10 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>错误</title>
+<title>错误页面</title>
+<!-- custom-theme -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<!-- <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script> -->
+<!-- //custom-theme -->
+<link th:href="@{/css/404style.css}" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<!-- <script src="js/jquery.min.js"></script> -->
+<!-- //js --> 
+<!-- font-awesome icons -->
+<link th:href="@{/css/font-awesome.css}" rel="stylesheet">
+<!-- //font-awesome icons -->
+<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
 </head>
 <body>
-    <p>页面未找到，请重试！！！</p>
+	<div class="main">
+		<canvas id="myCanvas"></canvas>
+		<div class="agileinfo_404_main">
+			<h1>404错误</h1>
+			<div class="w3_agile_main">
+				<h2>对不起。。页面被天狗吃了</h2>
+				<p>不能找到这个页面，请重试。。。</p>
+				<div class="agile_404 w3layouts">
+					<div class="agile_404_pos">
+						<h3>4<span>0</span>4<img th:src="@{/images/warning.png}" alt=" " /> </h3>
+					</div>
+					<img th:src="@{/images/404errorbackground.png}" alt=" " class="w3l"/>
+				</div>
+			</div>
+			<div class="agileits_copyright">
+				<p>如遇bug请联系站长 </p>
+			</div>
+		</div>
+	</div>
+	<script th:src="@{/js/particles.min.js}"></script>
+    <script>
+      window.onload = function() {
+        Particles.init({
+          selector: '#myCanvas',
+          color: '#6b6b6b',
+          connectParticles: true,
+          minDistance: 100
+        });
+      };
+    </script>
 </body>
 </html>

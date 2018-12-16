@@ -8,6 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 @EnableAutoConfiguration
 public class UserController {
@@ -23,5 +27,12 @@ public class UserController {
     @ResponseBody
     public User getUserById(){
         return userService.findUserById(1);
+    }
+
+    @RequestMapping("/cookieTest")
+    public String cookieTest(HttpServletRequest request, HttpServletResponse response){
+        Cookie cookie = new Cookie("cookietest", "我是来自服务器端的cookie");
+        response.addCookie(cookie);
+        return "index";
     }
 }

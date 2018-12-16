@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>测试</title>
+    <script type="text/javascript">
+        window.onload=function () {
+            var cookie = document.cookie;
+            var strings = cookie.split(";");
+            for (var i in strings){
+                alert(strings[i].split("=")[1]);
+            }
+        };
+    </script>
 </head>
 <body>
 成功跳转！！！！
