@@ -19,7 +19,7 @@ public class HotelshopApplicationTests {
 
 	@Test
 	public void selectUserById(){
-		System.out.println(userService.findUserById(1).getUserName());
+		System.out.println(userService.findUserById((short)1).getUsername());
 	}
 
 }

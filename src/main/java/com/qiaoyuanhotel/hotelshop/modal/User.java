@@ -1,24 +1,30 @@
 package com.qiaoyuanhotel.hotelshop.modal;
 
-public class User {
-    private int id;
-    private String userName;
+import java.io.Serializable;
+
+public class User implements Serializable {
+    private Short id;
+
+    private String username;
+
     private String password;
 
-    public int getId() {
+    private static final long serialVersionUID = 1L;
+
+    public Short getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Short id) {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
     }
 
     public String getPassword() {
@@ -26,6 +32,6 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password == null ? null : password.trim();
     }
 }

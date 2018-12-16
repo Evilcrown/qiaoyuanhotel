@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +25,7 @@ public class UserController {
     @RequestMapping("/selectUser")
     @ResponseBody
     public User getUserById(){
-        return userService.findUserById(1);
+        return userService.findUserById((short)1);
     }
 
     @RequestMapping("/cookieTest")

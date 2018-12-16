@@ -1,18 +1,71 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.qiaoyuanhotel.hotelshop.dao.UserMapperDao" >
-    <resultMap id="BaseResultMap" type="com.qiaoyuanhotel.hotelshop.modal.User" >
-        <id column="id" property="id" jdbcType="INTEGER" />
-        <result column="username" property="userName" jdbcType="VARCHAR" />
-        <result column="password" property="password" jdbcType="VARCHAR" />
-    </resultMap>
-    <sql id="Base_Column_List" >
-        id, username as userName, password as passWord
-    </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-        select
-        <include refid="Base_Column_List" />
-        from tb_user
-        where id = #{id,jdbcType=INTEGER}
-    </select>
+<mapper namespace="com.qiaoyuanhotel.hotelshop.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.qiaoyuanhotel.hotelshop.modal.User" >
+    <id column="id" property="id" jdbcType="SMALLINT" />
+    <result column="username" property="username" jdbcType="CHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, password
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_user
+    where id = #{id,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from tb_user
+    where id = #{id,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.qiaoyuanhotel.hotelshop.modal.User" >
+    insert into tb_user (id, username, password
+      )
+    values (#{id,jdbcType=SMALLINT}, #{username,jdbcType=CHAR}, #{password,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiaoyuanhotel.hotelshop.modal.User" >
+    insert into tb_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=SMALLINT},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiaoyuanhotel.hotelshop.modal.User" >
+    update tb_user
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=CHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiaoyuanhotel.hotelshop.modal.User" >
+    update tb_user
+    set username = #{username,jdbcType=CHAR},
+      password = #{password,jdbcType=CHAR}
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
 </mapper>
