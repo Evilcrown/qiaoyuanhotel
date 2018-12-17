@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiaoyuanhotel.hotelshop.dao.RoomMapper" >
+  <resultMap id="BaseResultMap" type="com.qiaoyuanhotel.hotelshop.modal.Room" >
+    <id column="room_num" property="roomNum" jdbcType="SMALLINT" />
+    <result column="room_type" property="roomType" jdbcType="SMALLINT" />
+    <result column="default_price" property="defaultPrice" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    room_num, room_type, default_price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_room
+    where room_num = #{roomNum,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from tb_room
+    where room_num = #{roomNum,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.qiaoyuanhotel.hotelshop.modal.Room" >
+    insert into tb_room (room_num, room_type, default_price
+      )
+    values (#{roomNum,jdbcType=SMALLINT}, #{roomType,jdbcType=SMALLINT}, #{defaultPrice,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiaoyuanhotel.hotelshop.modal.Room" >
+    insert into tb_room
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roomNum != null" >
+        room_num,
+      </if>
+      <if test="roomType != null" >
+        room_type,
+      </if>
+      <if test="defaultPrice != null" >
+        default_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roomNum != null" >
+        #{roomNum,jdbcType=SMALLINT},
+      </if>
+      <if test="roomType != null" >
+        #{roomType,jdbcType=SMALLINT},
+      </if>
+      <if test="defaultPrice != null" >
+        #{defaultPrice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiaoyuanhotel.hotelshop.modal.Room" >
+    update tb_room
+    <set >
+      <if test="roomType != null" >
+        room_type = #{roomType,jdbcType=SMALLINT},
+      </if>
+      <if test="defaultPrice != null" >
+        default_price = #{defaultPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where room_num = #{roomNum,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiaoyuanhotel.hotelshop.modal.Room" >
+    update tb_room
+    set room_type = #{roomType,jdbcType=SMALLINT},
+      default_price = #{defaultPrice,jdbcType=DECIMAL}
+    where room_num = #{roomNum,jdbcType=SMALLINT}
+  </update>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiaoyuanhotel.hotelshop.dao.IdcardMapper" >
+  <resultMap id="BaseResultMap" type="com.qiaoyuanhotel.hotelshop.modal.Idcard" >
+    <id column="ID_num" property="idNum" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="SMALLINT" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="nation" property="nation" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID_num, name, sex, address, nation
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_idcard
+    where ID_num = #{idNum,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_idcard
+    where ID_num = #{idNum,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qiaoyuanhotel.hotelshop.modal.Idcard" >
+    insert into tb_idcard (ID_num, name, sex, 
+      address, nation)
+    values (#{idNum,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=SMALLINT}, 
+      #{address,jdbcType=VARCHAR}, #{nation,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiaoyuanhotel.hotelshop.modal.Idcard" >
+    insert into tb_idcard
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idNum != null" >
+        ID_num,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idNum != null" >
+        #{idNum,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=SMALLINT},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiaoyuanhotel.hotelshop.modal.Idcard" >
+    update tb_idcard
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=SMALLINT},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        nation = #{nation,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where ID_num = #{idNum,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiaoyuanhotel.hotelshop.modal.Idcard" >
+    update tb_idcard
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=SMALLINT},
+      address = #{address,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=SMALLINT}
+    where ID_num = #{idNum,jdbcType=CHAR}
+  </update>
+</mapper>

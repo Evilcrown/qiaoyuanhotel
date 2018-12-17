@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiaoyuanhotel.hotelshop.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.qiaoyuanhotel.hotelshop.modal.Order" >
+    <id column="orderId" property="orderid" jdbcType="INTEGER" />
+    <result column="reservationTime" property="reservationtime" jdbcType="TIMESTAMP" />
+    <result column="payment" property="payment" jdbcType="SMALLINT" />
+    <result column="roominfa" property="roominfa" jdbcType="INTEGER" />
+    <result column="user" property="user" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    orderId, reservationTime, payment, roominfa, user
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_order
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_order
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qiaoyuanhotel.hotelshop.modal.Order" >
+    insert into tb_order (orderId, reservationTime, payment, 
+      roominfa, user)
+    values (#{orderid,jdbcType=INTEGER}, #{reservationtime,jdbcType=TIMESTAMP}, #{payment,jdbcType=SMALLINT}, 
+      #{roominfa,jdbcType=INTEGER}, #{user,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qiaoyuanhotel.hotelshop.modal.Order" >
+    insert into tb_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        orderId,
+      </if>
+      <if test="reservationtime != null" >
+        reservationTime,
+      </if>
+      <if test="payment != null" >
+        payment,
+      </if>
+      <if test="roominfa != null" >
+        roominfa,
+      </if>
+      <if test="user != null" >
+        user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="reservationtime != null" >
+        #{reservationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payment != null" >
+        #{payment,jdbcType=SMALLINT},
+      </if>
+      <if test="roominfa != null" >
+        #{roominfa,jdbcType=INTEGER},
+      </if>
+      <if test="user != null" >
+        #{user,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qiaoyuanhotel.hotelshop.modal.Order" >
+    update tb_order
+    <set >
+      <if test="reservationtime != null" >
+        reservationTime = #{reservationtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payment != null" >
+        payment = #{payment,jdbcType=SMALLINT},
+      </if>
+      <if test="roominfa != null" >
+        roominfa = #{roominfa,jdbcType=INTEGER},
+      </if>
+      <if test="user != null" >
+        user = #{user,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qiaoyuanhotel.hotelshop.modal.Order" >
+    update tb_order
+    set reservationTime = #{reservationtime,jdbcType=TIMESTAMP},
+      payment = #{payment,jdbcType=SMALLINT},
+      roominfa = #{roominfa,jdbcType=INTEGER},
+      user = #{user,jdbcType=SMALLINT}
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+</mapper>
